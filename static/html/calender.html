@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+<title>CalendarApp</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="./../css/calender.css" rel="stylesheet" type="text/css" />
+<link href="./../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table id="calendar">
+<tr class="header">
+  <th id="calendarHeader" colspan="7">
+  	<div>
+	  	<a href="" onclick="addYears(event, -1); return false;" style="color:#2ed39e">
+	  		<i class="fa fa-angle-double-left" aria-hidden="true"></i>
+	  	</a>
+	  	<a href="" onclick="addMonths(event, -1); return false;" style="color:#2ed39e">
+	  		<i class="fa fa-angle-left" aria-hidden="true"></i>
+	    </a>
+	    <a href="" onclick="targetDate = new Date(); setCalendar(event); return false;" style="color:#2ed39e">
+	  		<i class="fa fa-circle-o" aria-hidden="true"></i>
+	  	</a>
+	  	<a href="" onclick="addMonths(event, 1); return false;" style="color:#2ed39e">
+	  		<i class="fa fa-angle-right" aria-hidden="true"></i>
+	  	</a>
+	  	<a href="" onclick="addYears(event, 1); return false;" style="color:#2ed39e">
+	  		<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+	  	</a>
+  	</div>
+  </th>
+</tr>
+<tr class="days">
+  <th>Sunday</th>
+  <th>Monday</th>
+  <th>Tuesday</th>
+  <th>Wednesday</th>
+  <th>Thursday</th>
+  <th>Friday</th>
+  <th>Saturday</th>
+</tr>
+<tr>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+</tr>
+<tr>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+</tr>
+<tr>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+</tr>
+<tr>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+</tr>
+<tr>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+</tr>
+<tr>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+  <td><a class="date-link" href="" onclick="setTargetDate(event, this); return false;">&nbsp;</a></td>
+</tr>
+</table>
+<div id="new-event-form"  style="border: #ff8787 1px solid; width:250px; border-radius: 2px; padding: 10px;">
+    <div style="color:#ff8787;padding:10px 0 20px; 0; font-family: arial;">Current Date<span style="float: right; color: #b3b3b3; cursor: pointer;">X</span> </div>
+    <form action="">
+        <input type="text" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
+        <input type="text" placeholder="Location" style="font-size: 13px; padding: 2px 5px; width:235px;" /><br/>
+        <span style="padding-left: 10px; color: #b3b3b3; font-family: arial; font-size: 15px;"> Starts </span><br/>
+        <input id="start-date" type="date" style="width: 148px; padding: 5px;  " /><input id="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <span style="padding-left: 10px; color: #b3b3b3;font-family: arial; font-size: 15px;"> Ends </span><br/>
+        <input id="end-date" type="date" style="width: 148px; padding: 5px;  " /><input id="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <input type="checkbox" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
+        <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span>  <br/>
+        <textarea style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
+        <div class="button button-cancel" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;<div class="button button-submit">Save</div>
+    </form>
+    <br>
+</div>
+</body>
+ <script src="./../js/calender.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+ <script>
+     $('.date-link').click(function() {
+         $('#new-event-form').addClass("visible");
+         $('#new-event-form').removeClass("hidden");
+     });
+     $('#new-event-form-cancel').click(function(){
+         $(this).closest('form').find("input, textarea").val("");
+         $(this).closest('form').find("input[type=date], input[type=time]").prop('disabled', false);
+         $(this).closest('form').find("input[type=checkbox]").prop("checked", false);
+     });
+     $("#all-day-check").change(function() {
+         if($(this).is(":checked")) {
+             $("#start-date").prop('disabled', true);
+             $("#start-time").prop('disabled', true);
+             $("#end-date").prop('disabled', true);
+             $("#end-time").prop('disabled', true);
+         }
+         if(!$(this).is(":checked")) {
+             $("#start-date").prop('disabled', false);
+             $("#start-time").prop('disabled', false);
+             $("#end-date").prop('disabled', false);
+             $("#end-time").prop('disabled', false);
+         }
+     })
+ </script>
+</html>

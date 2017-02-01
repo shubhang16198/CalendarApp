@@ -1,0 +1,114 @@
+/* Stylings for the calendar display. */
+
+#calendar {
+  border-collapse: collapse;
+  border-spacing: 1px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#calendar tr.header th {
+  color: #2ed39e;
+  text-align: center;
+}
+
+#calendar tr.days th {
+  width: 2.2em;
+  color: #b3b3b3;
+  text-align: left;
+    padding:20px 0 0 0;
+    border:0;
+}
+
+#calendar td, #calendar th {
+  border: 1px solid #e5e6e7;
+  color: #000000;
+  empty-cells: show;
+  padding: 2px .25em 2px .25em;
+}
+
+#calendar td.target >a {
+  color: #fff;
+}
+
+#calendar td.target {
+  background-color: #2ed39e;
+  font-weight: bold;
+  font-color: #fff;
+}
+
+#calendar a, #calendar a:visited {
+  color: #b3b3b3;
+  text-decoration: none;
+}
+
+#calendar a:hover {
+  font-weight: bold;
+}
+
+
+#calendar tr.empty
+{
+  visibility: hidden;
+}
+
+#calendar tr.empty td
+{
+  border-style: none;
+}
+#calendar {
+    width : 100%;
+}
+#calendar td {
+    font-size: 20px;
+    text-align: left;
+    padding:0 6% 6% 0;
+    margin:0 auto auto 0;
+}
+
+textarea {
+    resize: none;
+}
+
+.hidden {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.visible {
+    visibility: visible;
+}
+div.button {
+    display: inline;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:2px;
+    background: #eee;
+    color: #555;
+    width: 40px;
+    height:30px;
+    font-size:15px;
+    padding:5px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    font-weight:bold;
+}
+
+.button-submit {
+    background: #ff8787 !important;
+    color: #f8f8f8 !important;
+
+}
+input, textarea{
+    border:1px solid #e5e6e7;
+}
+input:focus, textarea:focus{
+    outline:none;
+}
+input[type="date"], input[type="time"] {
+    color: #b3b3b3;
+}
+input {
+    margin-bottom: 10px;
+}
