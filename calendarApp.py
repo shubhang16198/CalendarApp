@@ -24,7 +24,7 @@ service = None
 
 @app.route('/')
 def home():
-    return app.send_static_file('html/calender.html')
+    return app.send_static_file('html/calendar.html')
 
 
 def get_start_date(startDate):
