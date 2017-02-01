@@ -113,3 +113,7 @@ input {
     margin-bottom: 10px;
 }
 
+div#new-event-form {
+    background: #fff;
+    position: absolute;
+}
