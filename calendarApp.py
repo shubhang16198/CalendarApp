@@ -17,7 +17,8 @@ app = Flask(__name__,static_url_path='')
 
 app.config['MONGO_DBNAME'] = 'test'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/testdb'
-app.config['SECRET_KEY'] = '0do3ITmMzXP0afu1Agg4XnGI'
+app.config['SECRET_KEY'] = '0do3ITmMzXP0afu1Agg4XnGI'   #For Locally
+#app.config['SECRET_KEY'] = 'R3yjfbBflLnIwn16RmovFCq0'  #For Deployment
 mongo = PyMongo(app)
 
 service = None
@@ -141,7 +142,8 @@ def login():
 @app.route('/oauth2callback')
 def oauth2callback():
   flow = client.flow_from_clientsecrets(
-      'client_secrets.json',
+      'client_secrets.json', #For running Locally
+      #'deployment.json', #For deployment over server
       scope='https://www.googleapis.com/auth/calendar',
       redirect_uri=flask.url_for('oauth2callback', _external=True))
 
