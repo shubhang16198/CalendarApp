@@ -14,16 +14,26 @@
         <td id="sidebar" width="15%">
             <div id="sidebar">
                 <div id="date-today" align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 50px;">
+                    <span id="time"></span>
                     <script>
-                        d = new Date();
-                        time = gettime(d);
-                        ampm = getAMPM(d)
-                        document.write('<span style="color : #f8f8f8;">' + time + '</span>');
-                        document.write('<span style="color : #f8f8f8; font-size:20px;">' + ampm + '</span>');
+                        function updateClock() {
+                            var now = new Date();
+                            var time = gettime(now);
+                            var ampm = getAMPM(now);
+                            var x = document.getElementById("time");
+                            x.innerHTML = '<span style="color : #f8f8f8;">' + time + '</span><span style="color : #f8f8f8; font-size:20px;">' + ampm + '</span>';
+                            setTimeout(updateClock, 1000);
+                        }
+                        updateClock();
                     </script>
                 </div>
                 <div id="events-today" align="center">
                     <span style="text-align: left">Today</span>
+                    <div id="events-today-events-list">
+                    </div>
+                    <script>
+                        get_events_list(document.getElementById("events-today"));
+                    </script>
                 </div>
             </div>
         </td>
