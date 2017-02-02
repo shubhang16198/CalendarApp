@@ -11,7 +11,7 @@ from oauth2client.file import Storage
 import datetime
 from collections import defaultdict
 import time
-
+import re
 
 app = Flask(__name__,static_url_path='')
 
@@ -191,6 +191,17 @@ def list_all():
 	for e in Events:
 		E.append(e)
 	return str(E)
+@app.route('/all/<year>/<month>/<day>')
+def list_day_events(year,month,day):
+    date = datetime.date(int(year), int(month), int(day))
+    print("###############"+str(date)+"#############")
+    #{"start":{$regex:/^2015-01-31*/}}
+    DayEvent = mongo.db.Events.find({"start":re.compile("^"+str(date)+"*")})
+    result = []
+    for e in DayEvent:
+        print(e)
+        result.append(e)
+    return str(result)
 
 @app.route('/create')
 def create():
@@ -218,6 +229,7 @@ def create():
         })
 
 	return 'Event created: %s' % (event.get('htmlLink'))
+
 
 if __name__ == "__main__":
     app.run()
