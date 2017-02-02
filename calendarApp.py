@@ -169,28 +169,29 @@ def delete(event_id):
 
 @app.route('/update',methods=['POST'])
 def update(event_id):
-	new_Event = {
-        '_id' : request.form['_id'],
-  		'description': request.form['description'],
-        'name' : request.form['name'],
-        'start': request.form['start'],
-        'end' : request.form['end']
-		}
-	Event = mongo.db.Events.find({"_id":new_Event['_id']})
-    e = None
-	for t in Event:
-	   e = t
+   new_Event = {
+   '_id' : request.form['_id'],
+   'description': request.form['description'],
+   'name' : request.form['name'],
+   'start': request.form['start'],
+   'end' : request.form['end']
+   }
+   Event = mongo.db.Events.find({"_id":new_Event['_id']})
+   e = None
+   for t in Event:
+    e = t
+
     if e!=None:
-    	for key in new_Event.keys():
-    		e[key] = new_Event[key]
-    	mongo.db.Events.save(e)
-    	e['start'] = {'dateTime': e['start']}
-    	e['end'] = {'dateTime':e['end']}
-    	e['summary'] = e['name']
-    	updated_event=service.events().update(calendarId='primary', eventId=e['_id'], body=e).execute()
-    	return "Event Updated"
+        for key in new_Event.keys():
+            e[key] = new_Event[key]
+        mongo.db.Events.save(e)
+        e['start'] = {'dateTime': e['start']}
+        e['end'] = {'dateTime':e['end']}
+        e['summary'] = e['name']
+        updated_event=service.events().update(calendarId='primary', eventId=e['_id'], body=e).execute()
+        return "Event Updated"
     else:
-        return "Invalid Event ID"
+      return "Invalid Event ID"
 
 @app.route('/all')
 def list_all():
