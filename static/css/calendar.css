@@ -117,3 +117,7 @@ div#new-event-form {
     background: #fff;
     position: absolute;
 }
+
+div#sidebar {
+    background: #2ed39e;
+}
