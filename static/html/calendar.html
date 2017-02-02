@@ -2,98 +2,120 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
-<title>CalendarApp</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="./../css/calendar.css" rel="stylesheet" type="text/css" />
-<link href="./../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <title>CalendarApp</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="./../css/calendar.css" rel="stylesheet" type="text/css" />
+    <link href="./../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="../js/sidebar.js"></script>
 </head>
 <body>
-<table id="calendar">
-<tr class="header">
-  <th id="calendarHeader" colspan="7">
-  	<div>
-	  	<a href="" onclick="addYears(event, -1); return false;" style="color:#2ed39e">
-	  		<i class="fa fa-angle-double-left" aria-hidden="true"></i>
-	  	</a>
-	  	<a href="" onclick="addMonths(event, -1); return false;" style="color:#2ed39e">
-	  		<i class="fa fa-angle-left" aria-hidden="true"></i>
-	    </a>
-	    <a href="" onclick="targetDate = new Date(); setCalendar(event); return false;" style="color:#2ed39e">
-	  		<i class="fa fa-circle-o" aria-hidden="true"></i>
-	  	</a>
-	  	<a href="" onclick="addMonths(event, 1); return false;" style="color:#2ed39e">
-	  		<i class="fa fa-angle-right" aria-hidden="true"></i>
-	  	</a>
-	  	<a href="" onclick="addYears(event, 1); return false;" style="color:#2ed39e">
-	  		<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-	  	</a>
-  	</div>
-  </th>
-</tr>
-<tr class="days">
-  <th>Sunday</th>
-  <th>Monday</th>
-  <th>Tuesday</th>
-  <th>Wednesday</th>
-  <th>Thursday</th>
-  <th>Friday</th>
-  <th>Saturday</th>
-</tr>
-<tr>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-</tr>
-<tr>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-</tr>
-<tr>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-</tr>
-<tr>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-</tr>
-<tr>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-</tr>
-<tr>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-  <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
-</tr>
+<table cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+        <td id="sidebar" width="15%">
+            <div id="sidebar">
+                <div id="date-today" align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 50px;">
+                    <script>
+                        d = new Date();
+                        time = gettime(d);
+                        ampm = getAMPM(d)
+                        document.write('<span style="color : #f8f8f8;">' + time + '</span>');
+                        document.write('<span style="color : #f8f8f8; font-size:20px;">' + ampm + '</span>');
+                    </script>
+                </div>
+                <div id="events-today" align="center">
+                    <span style="text-align: left">Today</span>
+                </div>
+            </div>
+        </td>
+        <td id="calendar_tab" width="85%" style="padding-left: 50px; padding-right: 50px;">
+            <table id="calendar" style="height: 100%;">
+            <tr class="header">
+              <th id="calendarHeader" class="no-border-left no-border-right no-border-top" colspan="7">
+                <div>
+                    <a href="" onclick="addYears(event, -1); return false;" style="color:#2ed39e">
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    </a>
+                    <a href="" onclick="addMonths(event, -1); return false;" style="color:#2ed39e">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </a>
+                    <a href="" onclick="targetDate = new Date(); setCalendar(event); return false;" style="color:#2ed39e">
+                        <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    </a>
+                    <a href="" onclick="addMonths(event, 1); return false;" style="color:#2ed39e">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="" onclick="addYears(event, 1); return false;" style="color:#2ed39e">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+              </th>
+            </tr>
+            <tr class="days">
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+            </tr>
+            <tr>
+              <td class="no-border-left"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td class="no-border-right"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+            </tr>
+            <tr>
+              <td class="no-border-left"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td class="no-border-right"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+            </tr>
+            <tr>
+              <td class="no-border-left"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td class="no-border-right"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+            </tr>
+            <tr>
+              <td class="no-border-left"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td class="no-border-right"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+            </tr>
+            <tr>
+              <td class="no-border-left"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td class="no-border-right"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+            </tr>
+            <tr>
+              <td class="no-border-left"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+              <td class="no-border-right"><a class="date-link" href="" onclick="setTargetDate(event, this); new_event_form_position(this); return false;">&nbsp;</a></td>
+            </tr>
+            </table>
+        </td>
+    </tr>
 </table>
 <div id="new-event-form" class="hidden" style="border: #ff8787 1px solid; width:250px; border-radius: 2px; padding: 10px;">
     <div style="color:#ff8787;padding:10px 0 20px; 0; font-family: arial;">Current Date<span id="form-close" onclick="close_form()" style="float: right; color: #b3b3b3; cursor: pointer;">X</span> </div>
