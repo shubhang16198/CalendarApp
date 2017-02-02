@@ -118,6 +118,21 @@ div#new-event-form {
     position: absolute;
 }
 
-div#sidebar {
+td#sidebar {
+
     background: #2ed39e;
+}
+
+/*td#calendar_tab {
+    width:auto;
+}
+*/
+.no-border-top {
+    border-top: none !important;
+}
+.no-border-left {
+    border-left: none !important;
+}
+.no-border-right {
+    border-right: none !important;
 }
