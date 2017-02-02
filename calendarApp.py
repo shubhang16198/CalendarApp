@@ -230,6 +230,14 @@ def create():
 
 	return 'Event created: %s' % (event.get('htmlLink'))
 
+@app.route('/find/<event_id>')
+def find(event_id):
+    Event = mongo.db.Events.find({"_id":event_id})
+    E = []
+    for e in Event:
+        E.append(e)
+    return str(E)
+
 
 if __name__ == "__main__":
     app.run()
