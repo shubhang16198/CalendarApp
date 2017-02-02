@@ -99,15 +99,14 @@
     <div style="color:#ff8787;padding:10px 0 20px; 0; font-family: arial;">Current Date<span id="form-close" onclick="close_form()" style="float: right; color: #b3b3b3; cursor: pointer;">X</span> </div>
     <form id="new_form" action="">
         <input type="text" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
-        <input type="text" placeholder="Location" style="font-size: 13px; padding: 2px 5px; width:235px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3; font-family: arial; font-size: 15px;"> Starts </span><br/>
-        <input id="start-date" type="date" style="width: 148px; padding: 5px;  " /><input id="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <input id="start-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3;font-family: arial; font-size: 15px;"> Ends </span><br/>
-        <input id="end-date" type="date" style="width: 148px; padding: 5px;  " /><input id="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <input id="end-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <input type="checkbox" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
         <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span>  <br/>
         <textarea style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
-        <div class="button button-cancel" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;<div class="button button-submit">Save</div>
+        <div class="button button-cancel" onclick="close_form()" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;<div class="button button-submit">Save</div>
     </form>
     <br>
 </div>
