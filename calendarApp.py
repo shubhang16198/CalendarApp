@@ -203,16 +203,16 @@ def list_day_events(year,month,day):
         result.append(e)
     return str(result)
 
-@app.route('/create')
+@app.route('/create',methods=['POST'])
 def create():
 	event = {
-  		'summary': 'Google I/O 2015',
-  		'description': 'A chance to hear more about Google\'s developer products.',
+  		'summary': request.form['name'],
+  		'description': request.form['description'],
   		'start': {
-    			'dateTime': '2017-03-28T12:29:59+05:30'
+    			'dateTime': request.form['start'] #'2017-03-28T12:29:59+05:30'
   			 },
   		'end': {
-    			'dateTime': '2017-03-29T12:29:59+05:30',
+    			'dateTime': request.form['end']   #'2017-03-29T12:29:59+05:30',
   			},
 		}
 
