@@ -214,7 +214,7 @@ def list_day_events(year,month,day):
     for e in DayEvent:
         #print(e)
         result.append(e)
-    return flask.jsonify(E)
+    return flask.jsonify(result)
 
 @app.route('/create',methods=['POST'])
 def create():
