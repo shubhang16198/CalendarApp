@@ -12,14 +12,32 @@ function getAMPM(date) {
     var ampm = date.getHours() >= 12 ? 'pm' : 'am';
     return ampm;
 }
-/*
+
 function get_events_list(object){
-    var d = new Date();
-    var url = "/all/" + d.getFullYear() + "/" + (parseInt(d.getMonth()) + 1) + "/" + d.getDate();
-    var items = $.getJSON(url).responseText;
-    var l = "<ul>";
-    for(i = 0; i < items.length; ++i) {
-        var x = "<li>" + items[i].
+    d = new Date();
+    url = "/all/" + d.getFullYear() + "/" + (parseInt(d.getMonth()) + 1) + "/" + d.getDate();
+    var noevents = false;
+    $.getJSON(url, function (data) {
+        if (data.length == 0) {
+            object.innerHTML = "No events today :( ";
+            noevents = true;
+            return;
+        }
+        else {
+            var l = "<ul>";
+            for (var i = 0; i < data.length; ++i)
+            {
+                var item = data[i];
+                var element = "<li id=" + item._id + ">" + item.name + "</li>";
+                l += element;
+            }
+            l += "</ul>";
+            object.innerHTML = l;
+        }
+
+    });
+    if (noevents) {
+        return;
     }
 }
 /*$(document).ready(function () {
