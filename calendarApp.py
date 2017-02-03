@@ -98,22 +98,26 @@ def get_events_in_calendar(calendarName, calendarMap, service, startDate, endDat
         start = event['start'].get('dateTime', event['start'].get('date'))
         end = event['end'].get('dateTime', event['end'].get('date'))
         event_type = calendarName
-        eventTitle = event.get('summary')
-        #event_name = ''.join([i if ord(i) < 128 else '' for i in eventTitle.replace(',','')])
-	event_id = event['id']
-	#print()
-        #print start[:10], duration, event_type, event_name
-    	mongo.db.Events.insert_one(
-        {
-	"cal_id": calendarId,
-        "_id": event_id,
-        "name":eventTitle,
-	"description":event.get('description'),
-        "start":start,
-        "end":end
-        })
+        eventTitle = None
+        if event.get('summary') != None : 
+            eventTitle = event.get('summary').encode('ascii','ignore')
+        description = None
+        event_id = event['id']
+        if event.get('description') != None : 
+            description = event.get('description').encode('ascii','ignore')
+        data = {
+            'cal_id': calendarId.encode('ascii','ignore'),
+            '_id': event_id.encode('ascii','ignore'),
+            'name':eventTitle,
+            'description':description,
+            'start':start.encode('ascii','ignore'),
+            'end':end.encode('ascii','ignore')
+            }
+        print(data)
+        mongo.db.Events.insert(data)
 	#print("############## INSERTED ################")
         events_list.append([event_id,start,end,event_type, eventTitle])
+    #print (flask.jsonify(events_list).data)
     return events_list
 
 
@@ -199,7 +203,7 @@ def list_all():
 	E =[]
 	for e in Events:
 		E.append(e)
-	return str(E)
+	return flask.jsonify(E)
 @app.route('/all/<year>/<month>/<day>')
 def list_day_events(year,month,day):
     date = datetime.date(int(year), int(month), int(day))
@@ -208,9 +212,9 @@ def list_day_events(year,month,day):
     DayEvent = mongo.db.Events.find({"start":re.compile("^"+str(date)+"*")})
     result = []
     for e in DayEvent:
-        print(e)
+        #print(e)
         result.append(e)
-    return str(result)
+    return flask.jsonify(E)
 
 @app.route('/create',methods=['POST'])
 def create():
@@ -245,7 +249,7 @@ def find(event_id):
     E = []
     for e in Event:
         E.append(e)
-    return str(E)
+    return flask.jsonify(E)
 
 
 if __name__ == "__main__":
