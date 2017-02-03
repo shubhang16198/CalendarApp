@@ -204,6 +204,7 @@ def list_all():
 	for e in Events:
 		E.append(e)
 	return flask.jsonify(E)
+
 @app.route('/all/<year>/<month>/<day>')
 def list_day_events(year,month,day):
     date = datetime.date(int(year), int(month), int(day))
@@ -215,6 +216,17 @@ def list_day_events(year,month,day):
         #print(e)
         result.append(e)
     return flask.jsonify(result)
+
+@app.route('/all/<year>/<month>')
+def list_month_events(year,month):
+    date = year+"-"+month
+    DayEvent = mongo.db.Events.find({"start":re.compile("^"+str(date))})
+    result = []
+    for e in DayEvent:
+        #print(e)
+        result.append(e)
+    return flask.jsonify(result)
+
 
 @app.route('/create',methods=['POST'])
 def create():
