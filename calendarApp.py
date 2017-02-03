@@ -209,12 +209,12 @@ def list_day_events(year,month,day):
     date = datetime.date(int(year), int(month), int(day))
     print("###############"+str(date)+"#############")
     #{"start":{$regex:/^2015-01-31*/}}
-    DayEvent = mongo.db.Events.find({"start":re.compile("^"+str(date)+"*")})
+    DayEvent = mongo.db.Events.find({"start":re.compile("^"+str(date))})
     result = []
     for e in DayEvent:
         #print(e)
         result.append(e)
-    return flask.jsonify(E)
+    return flask.jsonify(result)
 
 @app.route('/create',methods=['POST'])
 def create():
