@@ -133,16 +133,19 @@
 </table>
 <div id="new-event-form" class="hidden" style="border: #ff8787 1px solid; width:250px; border-radius: 2px; padding: 10px;">
     <div style="color:#ff8787;padding:10px 0 20px; 0; font-family: arial;">Current Date<span id="form-close" onclick="close_form()" style="float: right; color: #b3b3b3; cursor: pointer;">X</span> </div>
-    <form id="new_form" action="/create" method="POST">
-        <input type="text" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
+    <form id="new_form">
+        <input type="text" name ="name" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3; font-family: arial; font-size: 15px;"> Starts </span><br/>
-        <input id="start-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <input id="start-date" name="start-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="start-time" name="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3;font-family: arial; font-size: 15px;"> Ends </span><br/>
-        <input id="end-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
-        <input type="checkbox" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
+        <input id="end-date" name="end-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="end-time" name="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <input type="checkbox" name="all-day" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
         <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span>  <br/>
-        <textarea style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
-        <div class="button button-cancel" onclick="close_form()" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;<div onclick="close_form();" class="button button-submit">Save</div>
+        <textarea  name ="description" style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
+        <div class="button button-cancel" onclick="close_form()" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="button button-submit">
+        <input type ="button" placeholder="Save" onclick="close_form();submitForm(this.form);" name ="Save" class="button button-submit" /> Save
+        </div>
     </form>
     <br>
 </div>
@@ -187,6 +190,27 @@
         new_event_form_object = document.getElementById("new-event-form");
         document.getElementById("new_form").reset();
         new_event_form_object.className = "hidden";
+    }
+    function submitForm(form){
+      var url = '/create';
+      var f ={};
+          $(form).find("input[name]").each(function (index, node) {
+        f[node.name] = node.value;
+    });
+          $(form).find("textarea[name]").each(function (index, node) {
+        f[node.name] = node.value;
+    });
+      console.log(f);
+      var formData = {
+        "name": "hello",
+        "description":"hi",
+        "start":"2017-02-03T16:00:00+05:30",
+        "end":  "2018-01-31T22:17:01+05:30"
+      };
+      // console.log(form);
+      $.post(url, formData).done(function (data) {
+        alert(data);
+      });
     }
 </script>
 </html>
