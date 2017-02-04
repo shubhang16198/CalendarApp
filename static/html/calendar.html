@@ -247,7 +247,10 @@
     function fill_calendar() {
         var monthandyear, month, year, date;
         monthandyear = document.getElementById("calendarHeader").firstChild.nodeValue;
+         var monthtonum = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10",
+        "November":"11", "December":"12"};
         month = monthandyear.substring(0, monthandyear.length - 5);
+        month = monthtonum[month];
         year = monthandyear.substring(monthandyear.length - 4, monthandyear.length);
         var a;
         a = document.getElementsByClassName("date-link");
@@ -258,7 +261,9 @@
                 q = a[i].parentNode;
                 date = p.innerHTML;
                 var x;
-                x = new Date(year + "-" + month + "-" + date);
+                var y = year + "-" + month + "-" + date;
+                console.log(y)
+                x = new Date(y);
                 get_events_list_x(q, x);
             }
         }
