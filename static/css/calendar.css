@@ -62,7 +62,7 @@
 #calendar td {
     font-size: 20px;
     text-align: left;
-    padding:0 6% 6% 0;
+    padding:0 0 6% 0;
     margin:0 auto auto 0;
 }
 
@@ -144,10 +144,17 @@ table.fixed {
 table.fixed td {
     overflow: scroll;
 }
-.ul-events-list {
+.table-events-list {
     width: 100%;
     padding: 0;
     margin: 0;
+    border:none !important;
+}
+table.table-events-list > tr {
+    border:none !important;
+}
+table.table-events-list > tr > td {
+    border:none !important;
 }
 
 .calendar-events-list {
@@ -174,7 +181,7 @@ table.fixed td {
 }
 /* optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+    background: transparent;
 }
 
 .sidebar-events {

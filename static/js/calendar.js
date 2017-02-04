@@ -244,23 +244,23 @@ function get_events_list_x(object, d){
             return;
         }
         else {
-            var l = document.createElement("ul");
-            l.setAttribute("class", "ul-events-list");
+            var l = document.createElement("table");
+            l.setAttribute("class", "table-events-list");
             for (var i = 0; i < data.length; ++i)
             {
                 var item = data[i];
-                var element = document.createElement("li");
+                var element = document.createElement("tr");
                 element.setAttribute("id", item._id);
                 element.setAttribute("class", "calendar-events-list");
+                var td = document.createElement("td");
                 var text = document.createTextNode(item.name);
-                element.appendChild(text);
-                l.appendChild(element);
-                var el2 = document.createElement("span");
-                el2.setAttribute("class", "events-list-time");
+                td.appendChild(text);
+                element.appendChild(td);
+                var el2 = document.createElement("td");
                 var time = document.createTextNode(item.start.substring(11, 16));
-                el2.append(time);
-                l.appendChild(el2);
-                l.appendChild(document.createElement("br"));
+                el2.appendChild(time);
+                element.appendChild(el2);
+                l.appendChild(element);
             }
             object.appendChild(l);
         }
