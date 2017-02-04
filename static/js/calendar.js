@@ -11,7 +11,7 @@ window.onload = setCalendar;
 // date.
 //----------------------------------------------------------------------------
 
-function setCalendar(event) {
+function setCalendar(event, flag) {
 
   var el, tableEl, rowEl, cellEl, linkEl;
   var tmpDate, tmpDate2;
@@ -55,7 +55,13 @@ function setCalendar(event) {
 
     for (j = 0; j < rowEl.cells.length; j++) {
       cellEl = rowEl.cells[j];
+      if (flag) {
+          while (cellEl.childNodes.length > 1) {
+              cellEl.removeChild(cellEl.lastChild);
+          }
+      }
       linkEl = cellEl.firstChild;
+      linkEl.innerHTML="&nbsp;";
 
       if (tmpDate.getMonth() == targetDate.getMonth()) {
         linkEl.date = new Date(Date.parse(tmpDate));
@@ -92,19 +98,17 @@ function setCalendar(event) {
 //----------------------------------------------------------------------------
 
 function addMonths(event, n) {
-fill_calendar();
   // Advance the calendar month and update the display.
 
   targetDate.addMonths(n);
-  setCalendar(event);
+  setCalendar(event, 1);
 }
 
 function addYears(event, n) {
-    fill_calendar();
   // Advance the calendar year and update the display.
 
   targetDate.addYears(n);
-  setCalendar(event);
+  setCalendar(event, 1);
 }
 
 function setTargetDate(event, link) {
@@ -113,7 +117,7 @@ function setTargetDate(event, link) {
 
   if (link.date != null) {
     targetDate = new Date(Date.parse(link.date));
-    setCalendar(event);
+    setCalendar(event, 0);
   }
 }
 
@@ -251,7 +255,6 @@ function get_events_list_x(object, d){
                 l.appendChild(element)
             }
             object.appendChild(l);
-            console.log(l);
         }
 
     });

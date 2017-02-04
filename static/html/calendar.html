@@ -46,19 +46,19 @@
             <tr class="header">
               <th id="calendarHeader" class="no-border-left no-border-right no-border-top" colspan="7">
                 <div>
-                    <a href="" onclick="addYears(event, -1); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addYears(event, -1);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="addMonths(event, -1); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addMonths(event, -1);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="targetDate = new Date(); setCalendar(event);fill_calendar(); return false;" style="color:#2ed39e">
+                    <a href="" onclick="targetDate = new Date(); setCalendar(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="addMonths(event, 1); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addMonths(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="addYears(event, 1); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addYears(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -244,26 +244,20 @@
     }
 
     function fill_calendar() {
-        var monthtonum = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10",
-        "November":"11", "December":"12"};
         var monthandyear, month, year, date;
         monthandyear = document.getElementById("calendarHeader").firstChild.nodeValue;
         month = monthandyear.substring(0, monthandyear.length - 5);
         year = monthandyear.substring(monthandyear.length - 4, monthandyear.length);
         var a;
         a = document.getElementsByClassName("date-link");
+        for(var i = 0; i < a.length; ++i)
+            if(a[i].innerHTML == "&nbsp;")
+                console.log(a[i]);
         for (var i = 0; i < a.length; ++i) {
             if(a[i].innerHTML != "&nbsp;") {
                 var p, q;
                 p = a[i];
                 q = a[i].parentNode;
-                console.log(p);
-                console.log(q);
-                q.innerHTML = "";
-                console.log(q);
-                q.appendChild(p);
-                console.log(p);
-                console.log(q);
                 date = p.innerHTML;
                 var x;
                 x = new Date(year + "-" + month + "-" + date);
