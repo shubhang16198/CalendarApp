@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ee9e22a-5607-4129-8c72-cb5fe256df57" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/calendar.css" afterPath="$PROJECT_DIR$/static/css/calendar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/calendar.js" afterPath="$PROJECT_DIR$/static/js/calendar.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +32,8 @@
       <file leaf-file-name="calendar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/html/calendar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="76" column="17" lean-forward="false" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
+            <state relative-caret-position="339">
+              <caret line="260" column="62" lean-forward="true" selection-start-line="260" selection-start-column="62" selection-end-line="260" selection-end-column="62" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="calendar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/calendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="247" column="42" lean-forward="false" selection-start-line="247" selection-start-column="42" selection-end-line="247" selection-end-column="42" />
+            <state relative-caret-position="78">
+              <caret line="239" column="21" lean-forward="false" selection-start-line="239" selection-start-column="21" selection-end-line="239" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -74,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calendar.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/calendar.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="26" column="20" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+            <state relative-caret-position="486">
+              <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -117,9 +117,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/calendarApp.py" />
         <option value="$PROJECT_DIR$/static/js/sidebar.js" />
-        <option value="$PROJECT_DIR$/static/js/calendar.js" />
-        <option value="$PROJECT_DIR$/static/html/calendar.html" />
         <option value="$PROJECT_DIR$/static/css/calendar.css" />
+        <option value="$PROJECT_DIR$/static/html/calendar.html" />
+        <option value="$PROJECT_DIR$/static/js/calendar.js" />
       </list>
     </option>
   </component>
@@ -682,18 +682,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/calendar.js">
+    <entry file="file://$PROJECT_DIR$/static/css/calendar.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="247" column="42" lean-forward="false" selection-start-line="247" selection-start-column="42" selection-end-line="247" selection-end-column="42" />
+        <state relative-caret-position="486">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/html/calendar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="76" column="17" lean-forward="false" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
+        <state relative-caret-position="339">
+          <caret line="260" column="62" lean-forward="true" selection-start-line="260" selection-start-column="62" selection-end-line="260" selection-end-column="62" />
           <folding>
             <element signature="n#style#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -703,10 +703,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/calendar.css">
+    <entry file="file://$PROJECT_DIR$/static/js/calendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="26" column="20" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+        <state relative-caret-position="78">
+          <caret line="239" column="21" lean-forward="false" selection-start-line="239" selection-start-column="21" selection-end-line="239" selection-end-column="21" />
           <folding />
         </state>
       </provider>

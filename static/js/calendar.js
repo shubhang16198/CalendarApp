@@ -237,6 +237,7 @@ function dateAddYears(n) {
 function get_events_list_x(object, d){
     var url;
     url = "/all/" + d.getFullYear() + "/" + (parseInt(d.getMonth()) + 1) + "/" + d.getDate();
+    console.log(url);
     var noevents = false;
     $.getJSON(url, function (data) {
         if (data.length == 0) {
