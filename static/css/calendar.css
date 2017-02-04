@@ -136,3 +136,52 @@ td#sidebar {
 .no-border-right {
     border-right: none !important;
 }
+table.fixed {
+    table-layout: fixed;
+    min-width:500px;
+}
+
+table.fixed td {
+    overflow: scroll;
+}
+.ul-events-list {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.calendar-events-list {
+    font-size: 15px;
+    list-style:none;
+    background: #f8f8f8;
+    width: 100%;
+    display: inline;
+    border:#2ed39e solid 2px;
+}
+.calendar-events-list:hover {
+    background-color: #ff8787;
+    color: #f8f8f8;
+}
+
+.events-list-time {
+    font-size: 15px;
+    float: right;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+.sidebar-events {
+    list-style : none;
+    color: #f8f8f8;
+    text-align: left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding: 5px 0;
+}

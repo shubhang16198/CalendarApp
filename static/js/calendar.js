@@ -245,14 +245,22 @@ function get_events_list_x(object, d){
         }
         else {
             var l = document.createElement("ul");
+            l.setAttribute("class", "ul-events-list");
             for (var i = 0; i < data.length; ++i)
             {
                 var item = data[i];
                 var element = document.createElement("li");
                 element.setAttribute("id", item._id);
+                element.setAttribute("class", "calendar-events-list");
                 var text = document.createTextNode(item.name);
                 element.appendChild(text);
-                l.appendChild(element)
+                l.appendChild(element);
+                var el2 = document.createElement("span");
+                el2.setAttribute("class", "events-list-time");
+                var time = document.createTextNode(item.start.substring(11, 16));
+                el2.append(time);
+                l.appendChild(el2);
+                l.appendChild(document.createElement("br"));
             }
             object.appendChild(l);
         }

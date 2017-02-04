@@ -15,9 +15,9 @@
 </head>
 <body>
 <table cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
-        <td id="sidebar" width="15%">
+        <td id="sidebar" width="15%" style="position: fixed; height: 100%; padding-top: 15%;">
             <div id="sidebar">
-                <div id="date-today" align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 50px;">
+                <div id="date-today"  style="font-family: Arial, Helvetica, sans-serif; font-size: 50px; padding: 0 40px;">
                     <span id="time"></span>
                     <script>
                         function updateClock() {
@@ -31,18 +31,18 @@
                         updateClock();
                     </script>
                 </div>
-                <div id="events-today" align="center">
-                    <span style="text-align: left">Today</span>
-                    <div id="events-today-events-list">
+                <div id="events-today">
+                    <span style="text-align: left; padding-left: 40px; font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #f8f8f8; font-weight: bolder;">Today</span>
+                    <div id="events-today-events-list" style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
                     </div>
                     <script>
-                        get_events_list(document.getElementById("events-today"), new Date());
+                        get_events_list(document.getElementById("events-today-events-list"), new Date());
                     </script>
                 </div>
             </div>
         </td>
         <td id="calendar_tab" width="85%" style="padding-left: 50px; padding-right: 50px;">
-            <table id="calendar" style="height: 100%;">
+            <table class="fixed" id="calendar" style="height: 100%;">
             <tr class="header">
               <th id="calendarHeader" class="no-border-left no-border-right no-border-top" colspan="7">
                 <div>
@@ -170,7 +170,10 @@
      });
      $("#all-day-check").change(function() {
          if($(this).is(":checked")) {
+             $("#end-date").prop("value", $("#start-date").val());
              $("#start-date").prop('disabled', true);
+             $("#start-time").prop('value', '00:00');
+             $("#end-time").prop('value', '23:59');
              $("#start-time").prop('disabled', true);
              $("#end-date").prop('disabled', true);
              $("#end-time").prop('disabled', true);
@@ -223,9 +226,12 @@
     }
     function submitForm(form){
       var url = '/create';
-      var start = document.getElementById("start-date").value + "T" + document.getElementById("start-time").value+"+05:30";
-      var end = document.getElementById("end-date").value + "T" + document.getElementById("end-time").value+"+05:30";
-      
+      var start = document.getElementById("start-date").value ;
+      var end = document.getElementById("end-date").value;
+      if(!document.getElementById("all-day-check").getAttribute("checked")) {
+          start += "T" + document.getElementById("start-time").value + ":00+05:30";
+          end += "T" + document.getElementById("end-time").value + ":00+05:30";
+      }
       var formData = {
         "name": document.getElementById("event-name").value,
         "description":document.getElementById("event-description").value,
@@ -245,9 +251,6 @@
         year = monthandyear.substring(monthandyear.length - 4, monthandyear.length);
         var a;
         a = document.getElementsByClassName("date-link");
-        for(var i = 0; i < a.length; ++i)
-            if(a[i].innerHTML == "&nbsp;")
-                console.log(a[i]);
         for (var i = 0; i < a.length; ++i) {
             if(a[i].innerHTML != "&nbsp;") {
                 var p, q;
