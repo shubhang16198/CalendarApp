@@ -62,8 +62,8 @@
 #calendar td {
     font-size: 20px;
     text-align: left;
-    padding:0 0 6% 0;
-    margin:0 auto auto 0;
+    /*padding:0 0 6% 0;*/
+    /*margin:0 auto auto 0;*/
 }
 
 textarea {
@@ -157,17 +157,13 @@ table.table-events-list > tr > td {
     border:none !important;
 }
 
-.calendar-events-list {
-    font-size: 15px;
+.table-events-list > tr > td{
+    font-size: 15px !important;
     list-style:none;
-    background: #f8f8f8;
     width: 100%;
     display: inline;
     border:#2ed39e solid 2px;
-}
-.calendar-events-list:hover {
-    background-color: #ff8787;
-    color: #f8f8f8;
+    padding-bottom:10px !important;
 }
 
 .events-list-time {
