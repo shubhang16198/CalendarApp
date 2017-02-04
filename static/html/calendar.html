@@ -137,16 +137,16 @@
         <span id="form-close" onclick="close_form()" style="float: right; color: #b3b3b3; cursor: pointer;">x</span>
     </div>
     <form id="new_form" action="/create" method="POST">
-        <input type="text" name="name" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
+        <input type="text" id ="event-name" name="name" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3; font-family: arial; font-size: 15px;"> Starts </span><br/>
         <input id="start-date" name="start-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="start-time" name="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3;font-family: arial; font-size: 15px;"> Ends </span><br/>
         <input id="end-date" name="end-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="end-time" name="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <input type="checkbox" name="all-day" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
         <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span><br/>
-        <textarea  name ="description" style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
+        <textarea  id ="event-description" style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
         <div class="button button-cancel" onclick="close_form()" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="button button-submit" onclick="submitForm(document.forms[0]); close_form();">
+        <div class="button button-submit" onclick="submitForm(this.form); close_form();">
             Save
         </div>
     </form>
@@ -223,21 +223,16 @@
     }
     function submitForm(form){
       var url = '/create';
-      var f ={};
-      $(form).find("input[name]").each(function (index, node) {
-          f[node.name] = node.value;
-      });
-      $(form).find("textarea[name]").each(function (index, node) {
-          f[node.name] = node.value;
-      });
-      console.log(f);
+      var start = document.getElementById("start-date").value + "T" + document.getElementById("start-time").value+"+05:30";
+      var end = document.getElementById("end-date").value + "T" + document.getElementById("end-time").value+"+05:30";
+      
       var formData = {
-        "name": "hello",
-        "description":"hi",
-        "start":"2017-02-03T16:00:00+05:30",
-        "end":  "2018-01-31T22:17:01+05:30"
+        "name": document.getElementById("event-name").value,
+        "description":document.getElementById("event-description").value,
+        "start":start,
+        "end": end  
       };
-      // console.log(form);
+      console.log(formData);
       $.post(url, formData).done(function (data) {
         alert(data);
       });
