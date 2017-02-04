@@ -13,8 +13,7 @@ function getAMPM(date) {
     return ampm;
 }
 
-function get_events_list(object){
-    d = new Date();
+function get_events_list(object, d){
     url = "/all/" + d.getFullYear() + "/" + (parseInt(d.getMonth()) + 1) + "/" + d.getDate();
     var noevents = false;
     $.getJSON(url, function (data) {

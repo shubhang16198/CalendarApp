@@ -92,7 +92,7 @@ function setCalendar(event) {
 //----------------------------------------------------------------------------
 
 function addMonths(event, n) {
-
+fill_calendar();
   // Advance the calendar month and update the display.
 
   targetDate.addMonths(n);
@@ -100,7 +100,7 @@ function addMonths(event, n) {
 }
 
 function addYears(event, n) {
-
+    fill_calendar();
   // Advance the calendar year and update the display.
 
   targetDate.addYears(n);
@@ -227,4 +227,35 @@ function dateAddYears(n) {
   // Restore the saved day of month, if possible.
 
   this.setDate(Math.min(this.savedDate, this.getDays()));
+}
+
+
+function get_events_list_x(object, d){
+    var url;
+    url = "/all/" + d.getFullYear() + "/" + (parseInt(d.getMonth()) + 1) + "/" + d.getDate();
+    var noevents = false;
+    $.getJSON(url, function (data) {
+        if (data.length == 0) {
+            noevents = true;
+            return;
+        }
+        else {
+            var l = document.createElement("ul");
+            for (var i = 0; i < data.length; ++i)
+            {
+                var item = data[i];
+                var element = document.createElement("li");
+                element.setAttribute("id", item._id);
+                var text = document.createTextNode(item.name);
+                element.appendChild(text);
+                l.appendChild(element)
+            }
+            object.appendChild(l);
+            console.log(l);
+        }
+
+    });
+    if (noevents) {
+        return;
+    }
 }

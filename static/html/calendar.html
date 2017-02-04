@@ -36,7 +36,7 @@
                     <div id="events-today-events-list">
                     </div>
                     <script>
-                        get_events_list(document.getElementById("events-today"));
+                        get_events_list(document.getElementById("events-today"), new Date());
                     </script>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <a href="" onclick="addMonths(event, -1); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="targetDate = new Date(); setCalendar(event); return false;" style="color:#2ed39e">
+                    <a href="" onclick="targetDate = new Date(); setCalendar(event);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                     </a>
                     <a href="" onclick="addMonths(event, 1); return false;" style="color:#2ed39e">
@@ -137,19 +137,17 @@
         <span id="form-close" onclick="close_form()" style="float: right; color: #b3b3b3; cursor: pointer;">x</span>
     </div>
     <form id="new_form" action="/create" method="POST">
-        <input type="text" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
-        <div style="color:#ff8787;padding:10px 0 20px 0; font-family: arial;">Current Date<span id="form-close" onclick="close_form()" style="float: right; color: #b3b3b3; cursor: pointer;">X</span> </div>
-        <input type="text" name ="name" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
+        <input type="text" name="name" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3; font-family: arial; font-size: 15px;"> Starts </span><br/>
         <input id="start-date" name="start-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="start-time" name="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <span style="padding-left: 10px; color: #b3b3b3;font-family: arial; font-size: 15px;"> Ends </span><br/>
         <input id="end-date" name="end-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="end-time" name="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <input type="checkbox" name="all-day" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
-        <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span>  <br/>
+        <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span><br/>
         <textarea  name ="description" style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
         <div class="button button-cancel" onclick="close_form()" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="button button-submit">
-        <input type ="button" placeholder="Save" onclick="close_form();submitForm(this.form);" name ="Save" class="button button-submit" /> Save
+        <div class="button button-submit" onclick="submitForm(document.forms[0]); close_form();">
+            Save
         </div>
     </form>
     <br>
@@ -158,6 +156,9 @@
  <script src="./../js/calendar.js"></script>
 
  <script>
+     $(document).ready(function () {
+         fill_calendar();
+     })
      $('.date-link').click(function() {
          $('#new-event-form').addClass("visible");
          $('#new-event-form').removeClass("hidden");
@@ -194,11 +195,26 @@
         var current_date_element = document.getElementById("current-date");
         var d = new Date();
         var numtoday = {1:"Sunday", 2:"Monday", 3:"Tuesday", 4:"Wednesday", 5:"Thursday", 6:"Friday", 7:"Saturday"};
+        var monthtonum = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10",
+        "November":"11", "December":"12"};
+        var monthandyear, month_and_year = {};
+        monthandyear = document.getElementById("calendarHeader").firstChild.nodeValue;
+        month_and_year["month"] = monthandyear.substring(0, monthandyear.length - 5);
+        month_and_year["year"] = monthandyear.substring(monthandyear.length - 4, monthandyear.length);
         var s = numtoday[column] + ", ";
         s += obj.innerHTML + " ";
-        s += d.getMonthName() + " ";
-        s += d.getFullYear();
+        s += monthandyear;
         current_date_element.innerHTML = s;
+        var start_date = document.getElementById("start-date");
+        var date = parseInt(obj.innerHTML);
+        console.log(monthtonum[month_and_year["month"]]);
+        var month = parseInt(monthtonum[month_and_year["month"]]);
+        if (date < 10)
+            date = "0" + date;
+        if (month < 10)
+            month = "0" + month;
+        start_date.value = d.getFullYear() + "-" + month  + "-" + date;
+        start_date.setAttribute("disabled", "true");
     }
     function close_form() {
         new_event_form_object = document.getElementById("new-event-form");
@@ -208,12 +224,12 @@
     function submitForm(form){
       var url = '/create';
       var f ={};
-          $(form).find("input[name]").each(function (index, node) {
-        f[node.name] = node.value;
-    });
-          $(form).find("textarea[name]").each(function (index, node) {
-        f[node.name] = node.value;
-    });
+      $(form).find("input[name]").each(function (index, node) {
+          f[node.name] = node.value;
+      });
+      $(form).find("textarea[name]").each(function (index, node) {
+          f[node.name] = node.value;
+      });
       console.log(f);
       var formData = {
         "name": "hello",
@@ -225,6 +241,35 @@
       $.post(url, formData).done(function (data) {
         alert(data);
       });
+    }
+
+    function fill_calendar() {
+        var monthtonum = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10",
+        "November":"11", "December":"12"};
+        var monthandyear, month, year, date;
+        monthandyear = document.getElementById("calendarHeader").firstChild.nodeValue;
+        month = monthandyear.substring(0, monthandyear.length - 5);
+        year = monthandyear.substring(monthandyear.length - 4, monthandyear.length);
+        var a;
+        a = document.getElementsByClassName("date-link");
+        for (var i = 0; i < a.length; ++i) {
+            if(a[i].innerHTML != "&nbsp;") {
+                var p, q;
+                p = a[i];
+                q = a[i].parentNode;
+                console.log(p);
+                console.log(q);
+                q.innerHTML = "";
+                console.log(q);
+                q.appendChild(p);
+                console.log(p);
+                console.log(q);
+                date = p.innerHTML;
+                var x;
+                x = new Date(year + "-" + month + "-" + date);
+                get_events_list_x(q, x);
+            }
+        }
     }
 </script>
 </html>
