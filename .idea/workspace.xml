@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ee9e22a-5607-4129-8c72-cb5fe256df57" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calendarApp.py" afterPath="$PROJECT_DIR$/calendarApp.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/html/calendar.html" afterPath="$PROJECT_DIR$/static/html/calendar.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +31,8 @@
       <file leaf-file-name="calendar.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/html/calendar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-882">
-              <caret line="174" column="136" lean-forward="true" selection-start-line="174" selection-start-column="136" selection-end-line="174" selection-end-column="136" />
+            <state relative-caret-position="283">
+              <caret line="230" column="87" lean-forward="false" selection-start-line="230" selection-start-column="87" selection-end-line="230" selection-end-column="87" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -91,7 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>0 auto</find>
       <find>0 0 6%</find>
       <find>0 0 6</find>
       <find>get</find>
@@ -121,6 +119,7 @@
       <find>q = at</find>
       <find>item</find>
       <find>console.lo</find>
+      <find>window.in</find>
     </findStrings>
     <replaceStrings>
       <replace>no-border-left no-border-right</replace>
@@ -735,8 +734,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/html/calendar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-882">
-          <caret line="174" column="136" lean-forward="true" selection-start-line="174" selection-start-column="136" selection-end-line="174" selection-end-column="136" />
+        <state relative-caret-position="283">
+          <caret line="230" column="87" lean-forward="false" selection-start-line="230" selection-start-column="87" selection-end-line="230" selection-end-column="87" />
           <folding>
             <element signature="n#style#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#td#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
