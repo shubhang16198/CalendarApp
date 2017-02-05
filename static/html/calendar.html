@@ -7,10 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="./../css/calendar.css" rel="stylesheet" type="text/css" />
     <link href="./../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="../js/sidebar.js"></script>
 </head>
 <body>
@@ -144,14 +141,42 @@
         <input id="end-date" name="end-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="end-time" name="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
         <input type="checkbox" name="all-day" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
         <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span><br/>
-        <textarea  id ="event-description" style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
+        <textarea  id ="event-description" name="description" style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
         <div class="button button-cancel" onclick="close_form()" id="new-event-form-cancel">Cancel</div> &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="button button-submit" onclick="submitForm(this.form); close_form();">
+        <div class="button button-submit" onclick="submitForm(document.forms[0], '/create'); close_form();">
             Save
         </div>
     </form>
     <br>
 </div>
+
+<div id="edit-event-form" class="hidden" style="border: #ff8787 1px solid; width:250px; border-radius: 2px; padding: 10px;">
+    <div style="color:#ff8787;padding:10px 0 20px 0; font-family: arial;">
+        <span id="current-date"></span>
+        <span id="form-close" onclick="close_form_edit()" style="float: right; color: #b3b3b3; cursor: pointer;">x</span>
+    </div>
+    <form id="edit_form" action="/create" method="POST">
+        <input type="text" id ="event-name" name="name" placeholder="Event Name" style="font-size: 20px;padding: 5px; width:235px;" /><br/>
+        <span style="padding-left: 10px; color: #b3b3b3; font-family: arial; font-size: 15px;"> Starts </span><br/>
+        <input id="start-date" name="start-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="start-time" name="start-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <span style="padding-left: 10px; color: #b3b3b3;font-family: arial; font-size: 15px;"> Ends </span><br/>
+        <input id="end-date" name="end-date" type="date" data-date-inline-picker="true" style="width: 148px; padding: 5px;  " /><input id="end-time" name="end-time" type="time" style="width: 70px; margin-left: 5px; padding: 5px;" /><br/>
+        <input type="checkbox" name="all-day" id="all-day-check" /> <span style=" color: #b3b3b3;font-family: arial;"> All Day </span><br/>
+        <span style="font-family: arial; color: #b3b3b3; font-size: 15px;">Description</span><br/>
+        <textarea  id ="event-description" name="description" style="width: 235px; height: 100px; font-family: arial; padding: 5px;" ></textarea> <br/> <br />
+        <input type="hidden" name="_id" id="event-id" />
+        <div class="button button-cancel" onclick="close_form_edit()" id="new-event-form-cancel">Cancel</div>
+        <div class="button button-submit" onclick="submitForm(document.forms[1], '/update'); close_form_edit();">
+            Update
+        </div>
+        <br><br>
+        <div class="button" onclick="confirm('Are you sure?');delete_event(document.forms[1]); close_form_edit();" id="delete-event-button">Delete Event</div>
+
+
+    </form>
+    <br>
+</div>
+
 </body>
  <script src="./../js/calendar.js"></script>
 
@@ -188,6 +213,7 @@
  </script>
 <script type="text/javascript">
     function new_event_form_position(obj, row, column) {
+        close_form_edit();
         document.getElementById("new_form").reset();
         var new_event_form_object;
         new_event_form_object = document.getElementById("new-event-form");
@@ -210,7 +236,6 @@
         current_date_element.innerHTML = s;
         var start_date = document.getElementById("start-date");
         var date = parseInt(obj.innerHTML);
-        console.log(monthtonum[month_and_year["month"]]);
         var month = parseInt(monthtonum[month_and_year["month"]]);
         if (date < 10)
             date = "0" + date;
@@ -219,31 +244,111 @@
         start_date.value = d.getFullYear() + "-" + month  + "-" + date;
         start_date.setAttribute("disabled", "true");
     }
+     function edit_event_form_position(obj, id, row, column) {
+        close_form();
+        document.getElementById("edit_form").reset();
+        var edit_event_form_object;
+        edit_event_form_object = document.getElementById("edit-event-form");
+        edit_event_form_object.className = "visible";
+        var x = obj.getBoundingClientRect();
+        edit_event_form_object.style.setProperty("top", x.top + "px");
+        edit_event_form_object.style.setProperty("left", x.left + "px");
+        var current_date_element = document.getElementById("current-date");
+        var d = new Date();
+        var numtoday = {1:"Sunday", 2:"Monday", 3:"Tuesday", 4:"Wednesday", 5:"Thursday", 6:"Friday", 7:"Saturday"};
+        var monthtonum = {"January":"01", "February":"02", "March":"03", "April":"04", "May":"05", "June":"06", "July":"07", "August":"08", "September":"09", "October":"10",
+        "November":"11", "December":"12"};
+        var monthandyear, month_and_year = {};
+        monthandyear = document.getElementById("calendarHeader").firstChild.nodeValue;
+        month_and_year["month"] = monthandyear.substring(0, monthandyear.length - 5);
+        month_and_year["year"] = monthandyear.substring(monthandyear.length - 4, monthandyear.length);
+        var s = numtoday[column] + ", ";
+        s += obj.closest("table").closest("div").closest("td").firstChild.innerHTML + " ";
+        s += monthandyear;
+        current_date_element.innerHTML = s;
+        var url = "/find/" + id;
+        $.getJSON(url, function (data) {
+            var f = document.forms[1];
+            var eventname = f["name"];
+            var startdate = f["start-date"];
+            var starttime = f["start-time"];
+            var endtime = f["end-time"];
+            var enddate = f["end-date"];
+            var description = f["description"];
+            eventname.value = data[0]["name"];
+            startdate.value = data[0]["start"].split("T")[0];
+            var time = data[0]["start"].split("T")[1];
+            if(!time){
+                f["all-day"].checked = true;
+                enddate.value = startdate.value;
+                starttime.value = "00:00";
+                endtime.value = "23:59";
+            }
+            else {
+                time = time.substring(0, time.indexOf(":", time.indexOf(":") + 1));
+                starttime.value = time;
+                enddate.value = data[0]["end"].split("T")[0];
+                time = data[0]["end"].split("T")[1];
+                time = time.substring(0, time.indexOf(":", time.indexOf(":") + 1));
+                endtime.value = time;
+            }
+            f["_id"].value = id;
+            description.value = data[0]["description"];
+        })
+    }
     function close_form() {
-        new_event_form_object = document.getElementById("new-event-form");
+        var new_event_form_object = document.getElementById("new-event-form");
         document.getElementById("new_form").reset();
         new_event_form_object.className = "hidden";
     }
-    function submitForm(form){
-      var url = '/create';
-      var start = document.getElementById("start-date").value ;
-      var end = document.getElementById("end-date").value;
-      if(!document.getElementById("all-day-check").getAttribute("checked")) {
-          start += "T" + document.getElementById("start-time").value + ":00+05:30";
-          end += "T" + document.getElementById("end-time").value + ":00+05:30";
+    function close_form_edit() {
+        var edit_event_form_object = document.getElementById("edit-event-form");
+        document.getElementById("edit_form").reset();
+        edit_event_form_object.className = "hidden";
+    }
+    function submitForm(form, url){
+      var start = form["start-date"].value ;
+      var end = form["end-date"].value;
+      if(!form["all-day"].getAttribute("checked")) {
+          start += "T" + form["start-time"].value + ":00+05:30";
+          end += "T" + form["end-time"].value + ":00+05:30";
       }
       var formData = {
-        "name": document.getElementById("event-name").value,
-        "description":document.getElementById("event-description").value,
+        "name": form["name"].value,
+        "description":form["description"].value,
         "start":start,
-        "end": end  
+        "end": end,
+          "_id" : form["_id"].value
       };
-      console.log(formData);
+      if (url == "/update") {
+          url = "/update/" + document.forms[1]["event-id"].value;
+      }
       $.post(url, formData).done(function (data) {
         alert(data);
       });
     }
-
+    function add_attributes(d) {
+        var url;
+        url = "/all/" + d.getFullYear() + "/" + (parseInt(d.getMonth()) + 1) + "/" + d.getDate();
+        $.getJSON(url, function(data) {
+            if (data.length == 0)
+                return;
+            else {
+                for (var i = 0; i < data.length; ++i) {
+                    var item = data[i];
+                    var id = item['_id'];
+                    var obj = document.getElementById(id);
+                    var onc = "edit_event_form_position(this, \"" + id + "\", ";
+                    var l;
+                    l = obj.closest("table").closest("div").closest("td").firstChild.getAttribute("onclick");
+                    var kk;
+                    kk = l.substring(l.indexOf("this, ") + 6, l.length - 16);
+                    onc += kk + ");"
+                    obj.setAttribute("onclick", onc);
+                }
+            }
+        })
+    }
     function fill_calendar() {
         var monthandyear, month, year, date;
         monthandyear = document.getElementById("calendarHeader").firstChild.nodeValue;
@@ -260,13 +365,21 @@
                 p = a[i];
                 q = a[i].parentNode;
                 date = p.innerHTML;
-                var x;
-                var y = year + "-" + month + "-" + date;
-                console.log(y)
+                var x, y;
+                y = year + "-" + month + "-" + date;
                 x = new Date(y);
                 get_events_list_x(q, x);
+                add_attributes(x);
             }
         }
+    }
+    
+    function delete_event(form) {
+        var id = form["_id"].value;
+        var url = "/delete/" + id;
+        $.get(url, function () {
+            alert("successfully deleted the event");
+        })
     }
 </script>
 </html>

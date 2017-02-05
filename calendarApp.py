@@ -33,14 +33,11 @@ def get_start_date(startDate):
     Given a string startDate in the format of YYYY-mm-dd
     return a datetime object with the proper time zone
     """
-    return (datetime.datetime
-                    .strptime(startDate, "%Y-%m-%d")
-                    .isoformat() + 'Z')
+    return (datetime.datetime.strptime(startDate, "%Y-%m-%d").isoformat() + 'Z')
 
 def get_now_date():
     """Return a datetime object of current time"""
-    return (datetime.datetime.utcnow()
-                    .isoformat() + 'Z')
+    return (datetime.datetime.utcnow().isoformat() + 'Z')
 
 def get_calendar_list_map(service):
     """Get the list of Calendar Names, and store their corresponding ids"""
@@ -115,7 +112,7 @@ def get_events_in_calendar(calendarName, calendarMap, service, startDate, endDat
             }
         print(data)
         mongo.db.Events.insert(data)
-	#print("############## INSERTED ################")
+    #print("############## INSERTED ################")
         events_list.append([event_id,start,end,event_type, eventTitle])
     #print (flask.jsonify(events_list).data)
     return events_list
@@ -163,27 +160,27 @@ def oauth2callback():
 
 @app.route('/delete/<event_id>')
 def delete(event_id):
-	Events = mongo.db.Events.find({"_id":event_id})
-	for event in Events:
-		e=event
-	#print (e['cal_id'])
-	service.events().delete(calendarId=e['cal_id'], eventId=event_id).execute()
-	mongo.db.Events.remove({"_id":event_id})
-	return "Event Deleted"
+    Events = mongo.db.Events.find({"_id":event_id})
+    for event in Events:
+        e=event
+    #print (e['cal_id'])
+    service.events().delete(calendarId=e['cal_id'], eventId=event_id).execute()
+    mongo.db.Events.remove({"_id":event_id})
+    return "Event Deleted"
 
 @app.route('/update',methods=['POST'])
 def update(event_id):
-   new_Event = {
-   '_id' : request.form['_id'],
-   'description': request.form['description'],
-   'name' : request.form['name'],
-   'start': request.form['start'],
-   'end' : request.form['end']
-   }
-   Event = mongo.db.Events.find({"_id":new_Event['_id']})
-   e = None
-   for t in Event:
-    e = t
+    new_Event = {
+        '_id' : request.form['_id'],
+        'description': request.form['description'],
+        'name' : request.form['name'],
+        'start': request.form['start'],
+        'end' : request.form['end']
+    }
+    Event = mongo.db.Events.find({"_id":new_Event['_id']})
+    e = None
+    for t in Event:
+        e = t
 
     if e!=None:
         for key in new_Event.keys():
@@ -199,11 +196,11 @@ def update(event_id):
 
 @app.route('/all')
 def list_all():
-	Events = mongo.db.Events.find()
-	E =[]
-	for e in Events:
-		E.append(e)
-	return flask.jsonify(E)
+    Events = mongo.db.Events.find()
+    E =[]
+    for e in Events:
+        E.append(e)
+    return flask.jsonify(E)
 
 @app.route('/all/<year>/<month>/<day>')
 def list_day_events(year,month,day):
@@ -230,30 +227,30 @@ def list_month_events(year,month):
 
 @app.route('/create',methods=['POST'])
 def create():
-	event = {
-  		'summary': request.form['name'],
-  		'description': request.form['description'],
-  		'start': {
-    			'dateTime': request.form['start'] #'2017-03-28T12:29:59+05:30'
-  			 },
-  		'end': {
-    			'dateTime': request.form['end']   #'2017-03-29T12:29:59+05:30',
-  			},
-		}
+    event = {
+        'summary': request.form['name'],
+        'description': request.form['description'],
+        'start': {
+                'dateTime': request.form['start'] #'2017-03-28T12:29:59+05:30'
+            },
+        'end': {
+                'dateTime': request.form['end']   #'2017-03-29T12:29:59+05:30',
+            },
+        }
 
-	event = service.events().insert(calendarId='primary', body=event).execute()
-	print(event)
-	mongo.db.Events.insert_one(
+    event = service.events().insert(calendarId='primary', body=event).execute()
+    print(event)
+    mongo.db.Events.insert_one(
         {
-	"cal_id": 'primary',
+    "cal_id": 'primary',
         "_id":    event['id'],
         "name":   event['summary'],
-	"description":event['description'],
+    "description":event['description'],
         "start":  event['start'].get('dateTime', event['start'].get('date')),
         "end":    event['end'].get('dateTime', event['end'].get('date'))
         })
 
-	return 'Event created: %s' % (event.get('htmlLink'))
+    return 'Event created: %s' % (event.get('htmlLink'))
 
 @app.route('/find/<event_id>')
 def find(event_id):
@@ -266,3 +263,5 @@ def find(event_id):
 
 if __name__ == "__main__":
     app.run()
+
+            

@@ -31,7 +31,7 @@ function setCalendar(event, flag) {
 
   tmpDate = new Date(Date.parse(targetDate));
   tmpDate.setDate(1);
-  while (tmpDate.getDay() != 0) {
+  while (tmpDate.getDay() !== 0) {
     tmpDate.addDays(-1);
   }
 
@@ -65,7 +65,7 @@ function setCalendar(event, flag) {
 
       if (tmpDate.getMonth() == targetDate.getMonth()) {
         linkEl.date = new Date(Date.parse(tmpDate));
-        s = tmpDate.toString().split(" ");
+        var s = tmpDate.toString().split(" ");
         linkEl.title = s[0] + " " + s[1] + " " + s[2] + ", " + s[s.length - 1];
         linkEl.firstChild.nodeValue = tmpDate.getDate();
         linkEl.style.visibility = "";
@@ -75,7 +75,7 @@ function setCalendar(event, flag) {
 
       // Highlight the current date.
 
-      if (cellEl.oldClass == null)
+      if (cellEl.oldClass === null)
         cellEl.oldClass = cellEl.className;
       if (Date.parse(tmpDate) == Date.parse(targetDate))
         cellEl.className = cellEl.oldClass + " target";
@@ -115,7 +115,7 @@ function setTargetDate(event, link) {
 
   // Change the target date and update the calendar.
 
-  if (link.date != null) {
+  if (link.date !== null) {
     targetDate = new Date(Date.parse(link.date));
     setCalendar(event, 0);
   }
@@ -192,7 +192,7 @@ function dateAddMonths(n) {
 
   // Save the day of month if not already set.
 
-  if (this.savedDate == null)
+  if (this.savedDate === null)
     this.savedDate = this.getDate();
 
   // Set the day of month to the first to avoid rolling.
@@ -217,7 +217,7 @@ function dateAddYears(n) {
 
   // Save the day of month if not already set.
 
-  if (this.savedDate == null)
+  if (this.savedDate === null)
     this.savedDate = this.getDate();
 
   // Set the day of month to the first to avoid rolling.
@@ -237,15 +237,18 @@ function dateAddYears(n) {
 function get_events_list_x(object, d){
     var url;
     url = "/all/" + d.getFullYear() + "/" + (parseInt(d.getMonth()) + 1) + "/" + d.getDate();
-    console.log(url);
     var noevents = false;
     $.getJSON(url, function (data) {
-        if (data.length == 0) {
+        if (data.length === 0) {
             noevents = true;
             return;
         }
         else {
+            var div = document.createElement("div");
+            div.setAttribute("class", "table-events-list-wrapper");
             var l = document.createElement("table");
+            l.setAttribute("cellspacing", "0px");
+            l.setAttribute("cellpadding", "0px");
             l.setAttribute("class", "table-events-list");
             for (var i = 0; i < data.length; ++i)
             {
@@ -263,7 +266,8 @@ function get_events_list_x(object, d){
                 element.appendChild(el2);
                 l.appendChild(element);
             }
-            object.appendChild(l);
+            div.appendChild(l);
+            object.appendChild(div);
         }
 
     });

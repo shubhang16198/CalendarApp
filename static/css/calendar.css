@@ -113,10 +113,11 @@ input {
     margin-bottom: 10px;
 }
 
-div#new-event-form {
+div#new-event-form, div#edit-event-form {
     background: #fff;
     position: absolute;
 }
+
 
 td#sidebar {
 
@@ -144,26 +145,30 @@ table.fixed {
 table.fixed td {
     overflow: scroll;
 }
+
+div.table-events-list-wrapper {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+
 .table-events-list {
     width: 100%;
+    overflow: scroll;
     padding: 0;
     margin: 0;
     border:none !important;
 }
 table.table-events-list > tr {
     border:none !important;
-}
-table.table-events-list > tr > td {
-    border:none !important;
+    background: #f8f8f8;
 }
 
 .table-events-list > tr > td{
+    border:none !important;
     font-size: 15px !important;
     list-style:none;
     width: 100%;
-    display: inline;
-    border:#2ed39e solid 2px;
-    padding-bottom:10px !important;
 }
 
 .events-list-time {
@@ -180,6 +185,15 @@ table.table-events-list > tr > td {
     background: transparent;
 }
 
+::-moz-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-moz-scrollbar-thumb {
+    background: transparent;
+}
+
 .sidebar-events {
     list-style : none;
     color: #f8f8f8;
@@ -187,4 +201,8 @@ table.table-events-list > tr > td {
     font-family:Arial, Helvetica, sans-serif;
     font-size:14px;
     padding: 5px 0;
+}
+
+tr.calendar-events-list {
+    cursor: pointer !important;
 }
