@@ -49,7 +49,7 @@
                     <a href="" onclick="addMonths(event, -1);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="targetDate = new Date(); setCalendar(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
+                    <a href="" id="goto-today" onclick="targetDate = new Date(); setCalendar(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                     </a>
                     <a href="" onclick="addMonths(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
@@ -317,15 +317,15 @@
         "name": form["name"].value,
         "description":form["description"].value,
         "start":start,
-        "end": end,
-          "_id" : form["_id"].value
+        "end": end
       };
       if (url == "/update") {
+          formData["_id"] = form["_id"];
           url = "/update/" + document.forms[1]["event-id"].value;
       }
       $.post(url, formData).done(function (data) {
-        alert(data);
       });
+      document.getElementById("goto-today").click();
     }
     function add_attributes(d) {
         var url;
@@ -378,8 +378,8 @@
         var id = form["_id"].value;
         var url = "/delete/" + id;
         $.get(url, function () {
-            alert("successfully deleted the event");
         })
+        document.getElementById("goto-today").click();
     }
 </script>
 </html>
