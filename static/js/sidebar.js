@@ -27,7 +27,7 @@ function get_events_list(object, d){
             for (var i = 0; i < data.length; ++i)
             {
                 var item = data[i];
-                var element = "<li class='sidebar-events' >" + item.name + "</li>";
+                var element = "<li class='sidebar-events' onclick='targetDate = new Date(); setCalendar(event, 1);fill_calendar();  close_form(); close_form_edit();return false;'>" + item.name + "</li>";
                 l += element;
             }
             l += "</ul>";

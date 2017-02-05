@@ -203,6 +203,7 @@ table.table-events-list > tr:hover {
 
 .sidebar-events {
     list-style : none;
+    cursor: pointer;
     color: #f8f8f8;
     text-align: left;
     font-family:Arial, Helvetica, sans-serif;

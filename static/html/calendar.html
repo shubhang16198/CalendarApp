@@ -43,19 +43,19 @@
             <tr class="header">
               <th id="calendarHeader" class="no-border-left no-border-right no-border-top" colspan="7">
                 <div>
-                    <a href="" onclick="addYears(event, -1);fill_calendar(); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addYears(event, -1);fill_calendar(); close_form(); close_form_edit(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-double-left" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="addMonths(event, -1);fill_calendar(); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addMonths(event, -1);fill_calendar(); close_form(); close_form_edit(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                     </a>
-                    <a href="" id="goto-today" onclick="targetDate = new Date(); setCalendar(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
+                    <a href="" id="goto-today" onclick="targetDate = new Date(); setCalendar(event, 1);fill_calendar();  close_form(); close_form_edit();return false;" style="color:#2ed39e">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="addMonths(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addMonths(event, 1);fill_calendar(); close_form(); close_form_edit(); return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
-                    <a href="" onclick="addYears(event, 1);fill_calendar(); return false;" style="color:#2ed39e">
+                    <a href="" onclick="addYears(event, 1);fill_calendar();  close_form(); close_form_edit();return false;" style="color:#2ed39e">
                         <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -265,9 +265,17 @@
         var edit_event_form_object;
         edit_event_form_object = document.getElementById("edit-event-form");
         edit_event_form_object.className = "visible";
-        var x = obj.getBoundingClientRect();
-        edit_event_form_object.style.setProperty("top", x.top + "px");
-        edit_event_form_object.style.setProperty("left", x.left + "px");
+        var x = obj.closest("table").closest("div").getBoundingClientRect();
+        var fixed_top = x.top + 30;
+        var fixed_left = x.left + 30;
+        if (column > 4) {
+            fixed_left = x.left - edit_event_form_object.getBoundingClientRect().width;
+        }
+        if (row > 2) {
+            fixed_top = x.top - edit_event_form_object.getBoundingClientRect().width - 60;
+        }
+        edit_event_form_object.style.setProperty("top", fixed_top + "px");
+        edit_event_form_object.style.setProperty("left", fixed_left + "px");
         var current_date_element = document.getElementById("current-date");
         var d = new Date();
         var numtoday = {1:"Sunday", 2:"Monday", 3:"Tuesday", 4:"Wednesday", 5:"Thursday", 6:"Friday", 7:"Saturday"};
