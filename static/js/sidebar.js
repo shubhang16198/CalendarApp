@@ -18,7 +18,7 @@ function get_events_list(object, d){
     var noevents = false;
     $.getJSON(url, function (data) {
         if (data.length == 0) {
-            object.innerHTML = "<li class='sidebar-events'>No events today :( </li>";
+            object.innerHTML = "<li class='sidebar-events'> No events today :( </li>";
             noevents = true;
             return;
         }
