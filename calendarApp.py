@@ -168,7 +168,7 @@ def delete(event_id):
     mongo.db.Events.remove({"_id":event_id})
     return "Event Deleted"
 
-@app.route('/update',methods=['POST'])
+@app.route('/update',methods=['GET'])
 def update(event_id):
     new_Event = {
         '_id' : request.form['_id'],
