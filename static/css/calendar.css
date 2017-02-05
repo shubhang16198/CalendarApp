@@ -22,7 +22,7 @@
 
 #calendar td, #calendar th {
   border: 1px solid #e5e6e7;
-  color: #000000;
+
   empty-cells: show;
   padding: 2px .25em 2px .25em;
 }
@@ -166,6 +166,9 @@ div.table-events-list-wrapper {
 table.table-events-list > tr {
     background: #f8f8f8;
 }
+table.table-events-list > tr:hover {
+    background: #2bc493;
+}
 
 .table-events-list > tr > td{
     padding-bottom: 20px !important;
@@ -215,9 +218,32 @@ table.table-events-list > tr {
 
 tr.calendar-events-list {
     cursor: pointer !important;
+    -webkit-transition: background 0.1s;
+    -moz-transition: background 0.1s;
+    -ms-transition: background 0.1s;
+    -o-transition: background 0.1s;
+    transition: background 0.1s;
 }
 
-tr.calendar-events-list > td {
-    color: #2ed39e !important;
+tr.calendar-events-list {
+    color: #2ed39e;
     font-family: Arial, Helvetica, sans-serif;
+}
+tr.calendar-events-list:hover {
+    color : #f8f8f8;
+    -webkit-transition: background 0.1s;
+    -moz-transition: background 0.1s;
+    -ms-transition: background 0.1s;
+    -o-transition: background 0.1s;
+    transition: background 0.1s;
+}
+
+td.target > div.table-events-list-wrapper > table > tr:hover {
+    background: #ff8787;
+    color: #f8f8f8;
+    -webkit-transition: background 0.1s;
+    -moz-transition: background 0.1s;
+    -ms-transition: background 0.1s;
+    -o-transition: background 0.1s;
+    transition: background 0.1s;
 }
