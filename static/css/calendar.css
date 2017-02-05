@@ -160,6 +160,7 @@ div.table-events-list-wrapper {
     overflow: scroll;
     padding: 0;
     margin: 0;
+    border: lightslategrey solid 1px;
     border-right:#ff8787 solid 3px !important;
 }
 table.table-events-list > tr {
