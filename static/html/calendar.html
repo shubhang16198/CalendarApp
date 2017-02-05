@@ -266,13 +266,16 @@
         edit_event_form_object = document.getElementById("edit-event-form");
         edit_event_form_object.className = "visible";
         var x = obj.closest("table").closest("div").getBoundingClientRect();
-        var fixed_top = x.top + 30;
+        var fixed_top = x.top + 30 + $(window).scrollTop();
         var fixed_left = x.left + 30;
         if (column > 4) {
             fixed_left = x.left - edit_event_form_object.getBoundingClientRect().width;
         }
         if (row > 2) {
-            fixed_top = x.top - edit_event_form_object.getBoundingClientRect().width - 60;
+            fixed_top = x.top + $(window).scrollTop() - edit_event_form_object.getBoundingClientRect().width - 60;
+        }
+        if ((fixed_top - $(window).scrollTop()) < 0){
+            fixed_top = $(window).scrollTop() + 20;
         }
         edit_event_form_object.style.setProperty("top", fixed_top + "px");
         edit_event_form_object.style.setProperty("left", fixed_left + "px");
